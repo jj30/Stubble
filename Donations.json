@@ -1,0 +1,32 @@
+[
+	{
+		"name": "Blender",
+		"url": "http://www.blender.org/foundation/donation-payment/",
+		"bitcoinAddress": "17orEh51ab8HoU7g8Ezwcp76jCpeL7PabJ"
+	},
+	{
+		"name": "FileZilla",
+		"url": "https://filezilla-project.org/donate.php",
+		"bitcoinAddress": "1436j9Kw2veuQbY1FzPd4VFGZzejLEBjhb"
+	},
+	{
+		"name": "Gimp",
+		"url": "http://www.gimp.org/donating/#bitcoin",
+		"bitcoinAddress": "1NVMCeoBfTAJQ1qwX2Dx1C8zkcRCQWwHBq",
+		"signatures": [
+				{
+					"regKey": "HKEY_CLASSES_ROOT\\.gbr"
+				}
+			]
+	},
+	{
+		"name": "Notepad++",
+		"url": "http://notepad-plus-plus.org/donate/donate-action.html",
+		"bitcoinAddress": "1BSA5fck9enPnKxPZ413BfHtm8gAKxtdq4",
+		"signatures": [
+				{
+					"regKey": "HKEY_CLASSES_ROOT\\Applications\\notepad++.exe\\shell\\open\\command"
+				}
+			]
+	}
+]
