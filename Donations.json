@@ -28,5 +28,15 @@
 					"regKey": "HKEY_CLASSES_ROOT\\Applications\\notepad++.exe\\shell\\open\\command"
 				}
 			]
+	},
+	{
+		"name": "VLC",
+		"url": "https://www.videolan.org/contribute.html#money",
+		"bitcoinAddress": "131sGMNPQCgQhUzezY1mjDKc7atieUuStK",
+		"signatures" : [
+				{
+					"regKey": "HKEY_CLASSES_ROOT\\AudioCD\\shell\\PlayWithVLC"
+				}
+			]
 	}
 ]
