@@ -35,8 +35,19 @@
 		"bitcoinAddress": "131sGMNPQCgQhUzezY1mjDKc7atieUuStK",
 		"signatures" : [
 				{
-					"regKey": "HKEY_CLASSES_ROOT\\AudioCD\\shell\\PlayWithVLC"
+					"regKey": "HKEY_CLASSES_ROOT\\AudioCD\\shell\\PlayWithVLC",
+					"apt-cache" : "vlc"
 				}
 			]
+	},
+	{
+	    "name": "TOR",
+	    "url": "https://www.torproject.org/donate/donate",
+	    "bitcoinAddress": "1L8BMDBWuqZFDs4YN2q8nnh6yh9ZcsTWse",
+	    "signatures" : [
+	        {
+	            "apt-cache" : "torsocks"
+	        }
+	    ]
 	}
 ]

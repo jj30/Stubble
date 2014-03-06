@@ -1,25 +1,40 @@
-import os
-import wxModule
-import wx
 import json
-import _winreg
-import re
 
-class FoundSoftware():
-    def __init__(self):
+import wx
+
+import wxM
+
+
+class FindSoftware():
+    def __init__(self, sOS):
         fileDonationInfo = open("./Donations.json")
         recognition = fileDonationInfo.read()
         recognitionJSON = json.loads(recognition)
         self.software = []
 
+        # if we're on Ubuntu, load the cache
+        cache = apt.Cache()
+
         for software in recognitionJSON:
             print "Looking for software package: " + software["name"]
             if "signatures" in software:
                 for key in software["signatures"]:
-                    if self.searchReg(key["regKey"]):
-                        print "FOUND REG KEY:" + key["regKey"]
-                        print "Software " + software["name"] + " is likely on this computer."
-                        self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+                    # UBUNTU
+                    if sOS == "UBUNTU":
+                        try:
+                            searchTarget = cache[key["apt-cache"]]
+                            if key["apt-cache"] in searchTarget.fullname:
+                                print "FOUND APT CACHE: " + key["apt-cache"]
+                                print "Software " + software["name"] + " is likely on this computer."
+                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+
+                        except KeyError:
+                            print "Ubuntu searching for " + software["name"] + " is unavailable."
+                    else:
+                        if self.searchReg(key["regKey"]):
+                            print "FOUND REG KEY:" + key["regKey"]
+                            print "Software " + software["name"] + " is likely on this computer."
+                            self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
 
     def searchReg(self, regKey):
         keyPath = regKey.split("\\")[0]
@@ -53,11 +68,28 @@ class FoundSoftware():
     """
 
 if __name__ == '__main__':
+    import platform
+
+    # Init'd as windows until mac time
+    osType = "WINDOWS"
+    osType = platform.platform()
+    if "Linux" in osType:
+        osType = "UBUNTU"
+
+    # if they are not using windows, they are using ubuntu
+    # at current writing. I don't have any macs, but that's next.
+    try:
+        import _winreg
+    except ImportError:
+        import apt
+
     app = wx.PySimpleApp()
 
-    software = FoundSoftware().software
-    frame = wxModule.MainForm(software)
-    frame.donations = software
+    searcher = FindSoftware(osType)
+    softwareList = searcher.software
+
+    frame = wxM.MainForm(softwareList)
+    frame.donations = softwareList
     frame.draw()
     frame.Show()
 
