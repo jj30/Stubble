@@ -13,7 +13,8 @@ class FindSoftware():
         self.software = []
 
         # if we're on Ubuntu, load the cache
-        cache = apt.Cache()
+        if sOS == "UBUNTU":
+            cache = apt.Cache()
 
         for software in recognitionJSON:
             print "Looking for software package: " + software["name"]
@@ -31,10 +32,14 @@ class FindSoftware():
                         except KeyError:
                             print "Ubuntu searching for " + software["name"] + " is unavailable."
                     else:
-                        if self.searchReg(key["regKey"]):
-                            print "FOUND REG KEY:" + key["regKey"]
-                            print "Software " + software["name"] + " is likely on this computer."
-                            self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+                        try:
+                            if self.searchReg(key["regKey"]):
+                                print "FOUND REG KEY:" + key["regKey"]
+                                print "Software " + software["name"] + " is likely on this computer."
+                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+                        except KeyError:
+                            # if no regKey was specified by the JSON, it does not apply.
+                            pass
 
     def searchReg(self, regKey):
         keyPath = regKey.split("\\")[0]
