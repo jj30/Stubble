@@ -9,7 +9,7 @@ import urllib2
 class MainForm(wx.Frame):
     def __init__(self, donations):
         self.donations = donations
-        wx.Frame.__init__(self, None, wx.ID_ANY, "Donate to Developers")
+        wx.Frame.__init__(self, None, wx.ID_ANY, "Donate to Developers", size = (325, 325))
         self.panel_one = MainPanel(self)
 
     def draw(self):
@@ -20,21 +20,34 @@ class MainPanel(wx.Panel):
         self.donations = parent.donations
         self.panel = wx.Panel.__init__(self, parent)
         self.txtAmt = wx.TextCtrl(self, -1, "0.01", size = (125, -1), pos = (10, 10))
-        self.button = wx.Button(self, -1, "Generate QRs", pos = (150, 10))
+        self.button = wx.Button(self, -1, "Next", pos = (150, 10))
+        self.redraw = wx.Button(self, -1, "Redo", pos = (230, 10))
+
+        # init value
+        self.nIconNumber = 0
         self.button.Bind(wx.EVT_BUTTON, self.drawIcons)
 
+        # redo button redoes the icon for a different amount
+        self.redraw.Bind(wx.EVT_BUTTON, self.redo)
+
     def drawIcons(self, e = None):
-        n = 0
-        yPos = 50    # vertical y position for label and qr code (50 offset)
+        # avoid out of range error
+        if self.nIconNumber in range(0, len(self.donations)):
+            self.drawIcon()
+            self.nIconNumber = self.nIconNumber + 1
 
-        for d in self.donations:
-            yPos += 175 * n
-            image = self.fetchImage(d)
+    def redo(self, e = None):
+        self.nIconNumber = self.nIconNumber - 1
+        self.drawIcon()
+        self.nIconNumber = self.nIconNumber + 1
 
-            wx.StaticText(self, pos = (20, yPos), label = d["name"])
-            # QR code is 150 square, we're giving 25 for all-around margin, 175
-            wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(image), pos = (100, yPos))
-            n = n + 1
+    def drawIcon(self):
+        d = self.donations[self.nIconNumber]
+        image = self.fetchImage(d)
+
+        wx.StaticText(self, pos = (20, 50), label = d["name"], size = (100, 20))
+        # QR code is 150 square, we're giving 25 for all-around margin, 175
+        wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(image), pos = (100, 50))
 
     def fetchImage(self, donation):
         amt = self.txtAmt.GetValue()
