@@ -7,11 +7,24 @@ A screenshot of the interface is available on Imgur: http://imgur.com/o9RIiiE
 
 At current writing, Stubble allows a user to do the following:
 
-1) Donate bitcoin to Blender
-2) Donate bitcoin to FileZilla
-3) Donate bitcoin to Gimp
-4) Donate bitcoin to Notepad++
-5) Donate bitcoin to VLC
-6) Donate bitcoin to TOR
+1) Donate bitcoin to Bitcoin Foundation
+
+2) Donate bitcoin to Blender
+
+3) Donate bitcoin to FileZilla
+
+4) Donate bitcoin to Gimp
+
+5) Donate bitcoin to LibreOffice
+
+6) Donate bitcoin to Multibit
+
+7) Donate bitcoin to Notepad++
+
+8) Donate bitcoin to Synergy
+
+9) Donate bitcoin to VLC
+
+10) Donate bitcoin to TOR
 
 Users are allowed to check out and expand this list, as well as remove entries from this list, if anyone decides to "get smart" and tries to put his own bitcoin address in place of any popular softwares.
