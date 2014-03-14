@@ -9,7 +9,7 @@ import urllib2
 class MainForm(wx.Frame):
     def __init__(self, donations):
         self.donations = donations
-        wx.Frame.__init__(self, None, wx.ID_ANY, "Donate to Developers", size = (325, 325))
+        wx.Frame.__init__(self, None, wx.ID_ANY, "Donate to Developers", size = (325, 350))
         self.panel_one = MainPanel(self)
 
     def draw(self):
@@ -44,8 +44,18 @@ class MainPanel(wx.Panel):
     def drawIcon(self):
         d = self.donations[self.nIconNumber]
         image = self.fetchImage(d)
-
+        # Show software name
         wx.StaticText(self, pos = (20, 50), label = d["name"], size = (100, 20))
+        # Show URL
+        wx.HyperlinkCtrl(self, pos = (20, 225), label = d["url"], size = (250, 150))
+        # Show address
+        wx.StaticText(self, pos = (20, 275), label = d["bitcoinAddress"] + " (in clipboard)", size = (250, 275))
+
+        # Button for copy-to-clipboard
+        import os
+        command = 'echo ' + d["bitcoinAddress"] + '| clip'
+        os.system(command)
+
         # QR code is 150 square, we're giving 25 for all-around margin, 175
         wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(image), pos = (100, 50))
 

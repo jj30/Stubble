@@ -27,7 +27,7 @@ class FindSoftware():
                             if key["apt-cache"] in searchTarget.fullname:
                                 print "FOUND APT CACHE: " + key["apt-cache"]
                                 print "Software " + software["name"] + " is likely on this computer."
-                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"], url = software["url"]))
 
                         except KeyError:
                             print "Ubuntu searching for " + software["name"] + " is unavailable."
@@ -36,7 +36,7 @@ class FindSoftware():
                             if self.searchReg(key["regKey"]):
                                 print "FOUND REG KEY:" + key["regKey"]
                                 print "Software " + software["name"] + " is likely on this computer."
-                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"]))
+                                self.software.append(dict(name = software["name"], bitcoinAddress = software["bitcoinAddress"], url = software["url"]))
                         except KeyError:
                             # if no regKey was specified by the JSON, it does not apply.
                             pass
@@ -48,9 +48,20 @@ class FindSoftware():
         # so far all software has been found in HKEY_CLASSES_ROOT
         if keyPath == "HKEY_CLASSES_ROOT":
             mask = _winreg.HKEY_CLASSES_ROOT
+        elif keyPath == "HKEY_LOCAL_MACHINE":
+            mask = _winreg.HKEY_LOCAL_MACHINE
+        elif keyPath == "HKEY_CURRENT_USER":
+            mask = _winreg.HKEY_CURRENT_USER
 
-        keyFound = _winreg.OpenKey(mask, key)
-        name, value, type = _winreg.EnumValue(keyFound, 0)
+        try:
+            keyFound = _winreg.OpenKey(mask, key)
+            name, value, type = _winreg.EnumValue(keyFound, 0)
+        except WindowsError:
+            # keyFound = _winreg.KEY_WOW64_64KEY
+            # working on a way to use 32-bit python to read from a 64-bit registry
+            value = False
+            pass
+
         return value
 
     """

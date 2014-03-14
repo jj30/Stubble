@@ -1,13 +1,33 @@
 [
+	{ 
+		"name": "Bitcoin-Qt",
+		"url": "https://bitcoinfoundation.org/donate",
+		"bitcoinAddress": "1BTCorgHwCg6u2YSAWKgS17qUad6kHmtQW",
+		"signatures": [
+			{
+				"regKey": "HKEY_CURRENT_USER\\Software\\Bitcoin\\Bitcoin-Qt"
+			}
+		]
+	},
 	{
 		"name": "Blender",
 		"url": "http://www.blender.org/foundation/donation-payment/",
-		"bitcoinAddress": "17orEh51ab8HoU7g8Ezwcp76jCpeL7PabJ"
+		"bitcoinAddress": "17orEh51ab8HoU7g8Ezwcp76jCpeL7PabJ",
+		"signatures": [
+			{
+				"regKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\BlenderFoundation"
+			}
+		]
 	},
 	{
 		"name": "FileZilla",
 		"url": "https://filezilla-project.org/donate.php",
-		"bitcoinAddress": "1436j9Kw2veuQbY1FzPd4VFGZzejLEBjhb"
+		"bitcoinAddress": "1436j9Kw2veuQbY1FzPd4VFGZzejLEBjhb",
+		"signatures": [
+			{
+				"regKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\FileZilla 3"
+			}
+		]
 	},
 	{
 		"name": "Gimp",
@@ -20,6 +40,26 @@
 			]
 	},
 	{
+		"name": "LibreOffice",
+		"url": "https://donate.libreoffice.org",
+		"bitcoinAddress": "1EG3z4TCsLpVMvsbN92zzwMN9VitqURhCY",
+		"signatures": [
+			{
+				"regKey": "HKEY_CLASSES_ROOT\\.odt\\LibreOffice.WriterDocument.1\\ShellNew"
+			}
+		]
+	},
+	{
+	    "name": "MultiBit",
+	    "url": "bitcoin:1AhN6rPdrMuKBGFDKR1k9A8SCLYaNgXhty?amount=0.01&label=Please%20donate%20to%20multibit.org",
+	    "bitcoinAddress": "1AhN6rPdrMuKBGFDKR1k9A8SCLYaNgXhty",
+	    "signatures" : [
+	        {
+	            "regKey": "HKEY_CLASSES_ROOT\\bitcoin\\shell\\open\\command"
+	        }
+	    ]
+	},
+	{
 		"name": "Notepad++",
 		"url": "http://notepad-plus-plus.org/donate/donate-action.html",
 		"bitcoinAddress": "1BSA5fck9enPnKxPZ413BfHtm8gAKxtdq4",
@@ -28,6 +68,26 @@
 					"regKey": "HKEY_CLASSES_ROOT\\Applications\\notepad++.exe\\shell\\open\\command"
 				}
 			]
+	},
+	{
+		"name": "Synergy",
+		"url": "https://www.facebook.com/SynergyOpenSource/posts/770273299656908?stream_ref=10",
+		"bitcoinAddress": "13ME5SGyqkoiFp4V552RnvaZzCdodwqTHF",
+		"signatures": [
+			{
+				"regKey": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Synergy"
+			}
+		]
+	},
+	{
+	    "name": "TOR",
+	    "url": "https://www.torproject.org/donate/donate",
+	    "bitcoinAddress": "1L8BMDBWuqZFDs4YN2q8nnh6yh9ZcsTWse",
+	    "signatures" : [
+	        {
+	            "apt-cache" : "torsocks"
+	        }
+	    ]
 	},
 	{
 		"name": "VLC",
@@ -39,15 +99,5 @@
 					"apt-cache" : "vlc"
 				}
 			]
-	},
-	{
-	    "name": "TOR",
-	    "url": "https://www.torproject.org/donate/donate",
-	    "bitcoinAddress": "1L8BMDBWuqZFDs4YN2q8nnh6yh9ZcsTWse",
-	    "signatures" : [
-	        {
-	            "apt-cache" : "torsocks"
-	        }
-	    ]
 	}
 ]
