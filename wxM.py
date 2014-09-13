@@ -13,7 +13,7 @@ class MainForm(wx.Frame):
         self.panel_one = MainPanel(self)
 
     def draw(self):
-        self.panel_one.drawIcons()
+        self.panel_one.drawIcons(e=None)
 
 class MainPanel(wx.Panel):
     def __init__(self, parent):
@@ -22,6 +22,8 @@ class MainPanel(wx.Panel):
         self.txtAmt = wx.TextCtrl(self, -1, "0.01", size = (125, -1), pos = (10, 10))
         self.button = wx.Button(self, -1, "Next", pos = (150, 10))
         self.redraw = wx.Button(self, -1, "Redo", pos = (230, 10))
+        self.name = ""
+        self.address = ""
 
         # init value
         self.nIconNumber = 0
@@ -30,11 +32,26 @@ class MainPanel(wx.Panel):
         # redo button redoes the icon for a different amount
         self.redraw.Bind(wx.EVT_BUTTON, self.redo)
 
-    def drawIcons(self, e = None):
+    def drawIcons(self, e):
+        try:
+            b=e.GetEventObject().GetLabel()
+            # resets non-address label to ""
+            self.resetLabel(1, "")
+        except AttributeError:
+            print ""
+
         # avoid out of range error
         if self.nIconNumber in range(0, len(self.donations)):
             self.drawIcon()
             self.nIconNumber = self.nIconNumber + 1
+
+    def resetLabel(self, number, newLabel):
+        """"""
+        lbls = [widget for widget in self.Children if isinstance(widget, wx.StaticText)]
+        for lbl in lbls:
+            if not("(in clipboard)" in lbl.GetLabel()):
+                lbl.SetLabel(newLabel)
+                break
 
     def redo(self, e = None):
         self.nIconNumber = self.nIconNumber - 1
@@ -45,11 +62,11 @@ class MainPanel(wx.Panel):
         d = self.donations[self.nIconNumber]
         image = self.fetchImage(d)
         # Show software name
-        wx.StaticText(self, pos = (20, 50), label = d["name"], size = (100, 20))
+        self.name = wx.StaticText(self, pos = (20, 50), label = d["name"], size = (100, 20))
         # Show URL
-        wx.HyperlinkCtrl(self, pos = (20, 225), label = d["url"], size = (250, 150))
+        wx.HyperlinkCtrl(self, pos = (20, 225), label = d["url"], size = (250, 150), id= self.nIconNumber, url=d["url"])
         # Show address
-        wx.StaticText(self, pos = (20, 275), label = d["bitcoinAddress"] + " (in clipboard)", size = (250, 275))
+        self.address = wx.StaticText(self, pos = (20, 275), label = d["bitcoinAddress"] + " (in clipboard)", size = (250, 275))
 
         # Button for copy-to-clipboard
         import os
