@@ -7,6 +7,8 @@ A screenshot of the interface is available on Imgur: http://imgur.com/o9RIiiE
 
 At current writing, Stubble allows a user to do the following:
 
+0) Donate bitcoin to Apache Foundation
+
 1) Donate bitcoin to Bitcoin Foundation
 
 2) Donate bitcoin to Blender
