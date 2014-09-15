@@ -33,13 +33,15 @@ class MainPanel(wx.Panel):
         self.redraw.Bind(wx.EVT_BUTTON, self.redo)
 
     def drawIcons(self, e):
+        if self.nIconNumber == len(self.donations):
+            self.nIconNumber = self.nIconNumber - len(self.donations)
+
         try:
-            b=e.GetEventObject().GetLabel()
+            # b=e.GetEventObject().GetLabel()
             # resets non-address label to ""
-            self.resetLabel(1, "")
+            self.resetLabel(self.nIconNumber, "")
         except AttributeError:
             print ""
-
         # avoid out of range error
         if self.nIconNumber in range(0, len(self.donations)):
             self.drawIcon()
@@ -51,7 +53,6 @@ class MainPanel(wx.Panel):
         for lbl in lbls:
             if not("(in clipboard)" in lbl.GetLabel()):
                 lbl.SetLabel(newLabel)
-                break
 
     def redo(self, e = None):
         self.nIconNumber = self.nIconNumber - 1
@@ -74,7 +75,7 @@ class MainPanel(wx.Panel):
         os.system(command)
 
         # QR code is 150 square, we're giving 25 for all-around margin, 175
-        wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(image), pos = (100, 50))
+        wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(image), pos = (100, 75))
 
     def fetchImage(self, donation):
         amt = self.txtAmt.GetValue()

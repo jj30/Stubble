@@ -1,5 +1,25 @@
 [
 	{ 
+		"name": "Apache HTTP Server",
+		"url": "http://www.apache.org/foundation/contributing.html",
+		"bitcoinAddress": "1BtjAzWGLyAavUkbw3QsyzzNDKdtPXk95D",
+        "signatures": [
+            {
+                "apt-cache": "apache2"
+            }
+		]
+	},
+	{
+		"name": "Apache Ant",
+		"url": "http://www.apache.org/foundation/contributing.html",
+		"bitcoinAddress": "1BtjAzWGLyAavUkbw3QsyzzNDKdtPXk95D",
+        "signatures": [
+            {
+                "apt-cache": "ant"
+            }
+		]
+	},
+	{
 		"name": "Bitcoin-Qt",
 		"url": "https://bitcoinfoundation.org/donate",
 		"bitcoinAddress": "1BTCorgHwCg6u2YSAWKgS17qUad6kHmtQW",
